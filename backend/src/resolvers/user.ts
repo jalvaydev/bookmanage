@@ -58,16 +58,25 @@ class UserResolver {
 
     const hashedPassword = await argon2.hash(input.password);
 
-    const user = await prisma.user.create({
-      data: {
-        firstName: input.firstName,
-        lastName: input.lastName,
-        email: input.email,
-        password: hashedPassword,
-      },
-    });
+    let user;
+    try {
+      const conn = await prisma.user.create({
+        data: {
+          firstName: input.firstName,
+          lastName: input.lastName,
+          email: input.email,
+          password: hashedPassword,
+        },
+      });
 
-    return user;
+      user = conn;
+    } catch (err) {
+      if (err.code === "P2002") {
+        return new Error("Email already exists");
+      }
+    }
+
+    return user as User;
   }
 
   @Mutation(() => User)
