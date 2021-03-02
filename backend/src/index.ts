@@ -2,7 +2,6 @@ import { ApolloServer } from "apollo-server-express";
 import "reflect-metadata";
 import * as tq from "type-graphql";
 import UserResolver from "./resolvers/user";
-import { createContext } from "./context";
 import Redis from "ioredis";
 import connectRedis from "connect-redis";
 import express from "express";
@@ -10,6 +9,7 @@ import session from "express-session";
 import cors from "cors";
 import { COOKIE_NAME, __prod__ } from "./constants";
 import dotenv from "dotenv";
+import { PrismaClient } from "@prisma/client";
 
 dotenv.config();
 
@@ -50,9 +50,12 @@ const main = async () => {
     validate: false,
   });
 
-  const context = createContext();
+  const prisma = new PrismaClient();
 
-  const apolloServer = new ApolloServer({ schema, context });
+  const apolloServer = new ApolloServer({
+    schema,
+    context: ({ req, res }) => ({ req, res, prisma, redis }),
+  });
 
   apolloServer.applyMiddleware({
     app,

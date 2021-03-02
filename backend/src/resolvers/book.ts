@@ -1,6 +1,6 @@
-import { Context } from "src/context";
-import { Resolver, Query, Ctx, Arg, Mutation } from "type-graphql";
+import { Resolver, Query, Ctx, Arg } from "type-graphql";
 import { Book } from "@generated/type-graphql";
+import { Context } from "src/types";
 
 @Resolver()
 class BookResolver {

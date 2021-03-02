@@ -1,5 +1,4 @@
 import { User } from "@generated/type-graphql";
-import { Context } from "../context";
 import {
   Arg,
   Ctx,
@@ -11,6 +10,7 @@ import {
 } from "type-graphql";
 import { validateRegister } from "../utils/validateRegister";
 import argon2 from "argon2";
+import { Context } from "src/types";
 
 @InputType()
 export class RegisterInput {
@@ -83,7 +83,7 @@ class UserResolver {
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string,
-    @Ctx() { prisma }: Context
+    @Ctx() { req, prisma }: Context
   ): Promise<User | Error> {
     const user = await prisma.user.findUnique({ where: { email } });
 
