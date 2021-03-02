@@ -1,13 +1,12 @@
 import { ApolloServer } from "apollo-server";
 import "reflect-metadata";
 import * as tq from "type-graphql";
-import { UserCrudResolver, BookCrudResolver } from "@generated/type-graphql";
+import UserResolver from "./resolvers/user";
 import { createContext } from "./context";
-import { CustomUserResolver } from "./resolvers/CustomUserResolver";
 
 const app = async () => {
   const schema = await tq.buildSchema({
-    resolvers: [UserCrudResolver, BookCrudResolver, CustomUserResolver],
+    resolvers: [UserResolver],
     validate: false,
   });
 
