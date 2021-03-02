@@ -18,7 +18,7 @@ model Book {
   title       String    @db.VarChar(255)
   author      String    @db.VarChar(60)
   price       Decimal   @db.Decimal(7,2)
-  stock       Int       @db.Integer
+  stock       Int       @db.Integer @default(0)
 }
 
 model User {
@@ -29,4 +29,10 @@ model User {
   firstName   String    @db.VarChar(30)
   lastName    String    @db.VarChar(30)
   password    String    
+  role        Role      @default(USER)    
+}
+
+enum Role {
+  USER
+  ADMIN
 }
