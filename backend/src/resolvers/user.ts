@@ -10,7 +10,7 @@ import {
 } from "type-graphql";
 import { validateRegister } from "../utils/validateRegister";
 import argon2 from "argon2";
-import { Context } from "src/types";
+import { Context } from "../types";
 
 @InputType()
 export class RegisterInput {
@@ -49,7 +49,7 @@ class UserResolver {
   @Mutation(() => User)
   async register(
     @Arg("input") input: RegisterInput,
-    @Ctx() { prisma }: Context
+    @Ctx() { prisma, req }: Context
   ): Promise<User | Error> {
     const validate = validateRegister(input);
     if (validate !== null) {
@@ -68,15 +68,18 @@ class UserResolver {
           password: hashedPassword,
         },
       });
-
       user = conn;
     } catch (err) {
       if (err.code === "P2002") {
         return new Error("Email already exists");
+      } else {
+        return err;
       }
     }
 
-    return user as User;
+    req.session.userId = user.id;
+
+    return user;
   }
 
   @Mutation(() => User)
@@ -96,6 +99,8 @@ class UserResolver {
     if (!valid) {
       return new Error("invalid login");
     }
+
+    req.session.userId = user.id;
 
     return user;
   }
