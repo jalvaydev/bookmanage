@@ -1,3 +1,4 @@
+import { addApolloState, initializeApollo } from "../../libs/apolloClient";
 import Card from "./Card";
 const CardList = () => {
   return (
