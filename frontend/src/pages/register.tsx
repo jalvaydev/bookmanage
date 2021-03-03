@@ -4,9 +4,11 @@ import { Formik, Form, Field, FormikHelpers } from "formik";
 interface Values {
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
 }
 
-const Login = () => {
+const Register = () => {
   return (
     <Layout>
       <div className="min-h-full rounded-lg flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -18,13 +20,19 @@ const Login = () => {
               alt="Workflow"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
+              Create an Account
             </h2>
+            <p className="mt-2 text-center text-sm text-gray-600 max-w">
+              Fill in the following fields in order to create your account to
+              shop some awesome deals on some great books.
+            </p>
           </div>
           <Formik
             initialValues={{
               email: "",
               password: "",
+              firstName: "",
+              lastName: "",
             }}
             onSubmit={(
               values: Values,
@@ -38,7 +46,31 @@ const Login = () => {
           >
             <Form className="mt-8 space-y-6" action="#" method="POST">
               <input type="hidden" name="remember" value="true" />
-              <div className="rounded-md shadow-sm -space-y-px">
+              <div className="rounded-md shadow-sm space-y-5">
+                <div>
+                  <label htmlFor="first-name" className="sr-only">
+                    First name
+                  </label>
+                  <Field
+                    id="first-name"
+                    name="firstName"
+                    required
+                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    placeholder="First name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="last-name" className="sr-only">
+                    Last name
+                  </label>
+                  <Field
+                    id="last-name"
+                    name="lastName"
+                    required
+                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    placeholder="Last name"
+                  />
+                </div>
                 <div>
                   <label htmlFor="email-address" className="sr-only">
                     Email address
@@ -49,7 +81,7 @@ const Login = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Email address"
                   />
                 </div>
@@ -63,35 +95,9 @@ const Login = () => {
                     type="password"
                     autoComplete="current-password"
                     required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Password"
                   />
-                </div>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <Field
-                    id="remember_me"
-                    name="remember_me"
-                    type="checkbox"
-                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                  />
-                  <label
-                    htmlFor="remember_me"
-                    className="ml-2 block text-sm text-gray-900"
-                  >
-                    Remember me
-                  </label>
-                </div>
-
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-medium text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot your password?
-                  </a>
                 </div>
               </div>
 
@@ -116,7 +122,7 @@ const Login = () => {
                       />
                     </svg>
                   </span>
-                  Sign in
+                  Register
                 </button>
               </div>
             </Form>
@@ -127,4 +133,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
