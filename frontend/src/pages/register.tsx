@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import Alert from "../components/Alerts/Alert";
-import { Formik, Form, Field, FormikHelpers } from "formik";
+import { Formik, Form, Field } from "formik";
 import { useRouter } from "next/router";
 import { useRegisterMutation } from "../generated/graphql";
 

@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import { Formik, Form, Field, FormikProps } from "formik";
+import { Formik, Form, Field } from "formik";
 import { useRouter } from "next/router";
 import { useLoginMutation } from "../generated/graphql";
 import Alert from "../components/Alerts/Alert";
