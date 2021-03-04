@@ -5,6 +5,7 @@ import {
   Field,
   InputType,
   Mutation,
+  ObjectType,
   Query,
   Resolver,
 } from "type-graphql";
@@ -27,6 +28,24 @@ export class RegisterInput {
   password: string;
 }
 
+@ObjectType()
+class FieldError {
+  @Field()
+  field: string;
+
+  @Field()
+  message: string;
+}
+
+@ObjectType()
+class UserResponse {
+  @Field(() => [FieldError], { nullable: true })
+  errors?: FieldError[];
+
+  @Field(() => User, { nullable: true })
+  user?: User;
+}
+
 @Resolver()
 class UserResolver {
   @Query(() => [User])
@@ -46,11 +65,11 @@ class UserResolver {
     });
   }
 
-  @Mutation(() => User)
+  @Mutation(() => UserResponse)
   async register(
     @Arg("input") input: RegisterInput,
     @Ctx() { prisma, req }: Context
-  ): Promise<User | Error> {
+  ): Promise<UserResponse> {
     const validate = validateRegister(input);
     if (validate !== null) {
       return validate;
@@ -71,38 +90,63 @@ class UserResolver {
       user = conn;
     } catch (err) {
       if (err.code === "P2002") {
-        return new Error("Email already exists");
+        return {
+          errors: [
+            {
+              field: "Email",
+              message: "Email is already in the database.",
+            },
+          ],
+        };
       } else {
-        return err;
+        return {
+          errors: [
+            { field: err.code, message: "An unkown error has occurred..." },
+          ],
+        };
       }
     }
 
     req.session.userId = user.id;
 
-    return user;
+    return { user };
   }
 
-  @Mutation(() => User)
+  @Mutation(() => UserResponse)
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string,
     @Ctx() { req, prisma }: Context
-  ): Promise<User | Error> {
+  ): Promise<UserResponse> {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      return new Error("user not found");
+      return {
+        errors: [
+          {
+            field: "user",
+            message: "The user has not been found",
+          },
+        ],
+      };
     }
 
     const valid = await argon2.verify(user.password, password);
 
     if (!valid) {
-      return new Error("invalid login");
+      return {
+        errors: [
+          {
+            field: "authentication",
+            message: "invalid login",
+          },
+        ],
+      };
     }
 
     req.session.userId = user.id;
 
-    return user;
+    return { user };
   }
 }
 
