@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
+
 -- CreateTable
 CREATE TABLE "Book" (
     "id" SERIAL NOT NULL,
@@ -6,7 +9,7 @@ CREATE TABLE "Book" (
     "title" VARCHAR(255) NOT NULL,
     "author" VARCHAR(60) NOT NULL,
     "price" DECIMAL(7,2) NOT NULL,
-    "stock" INTEGER NOT NULL,
+    "stock" INTEGER NOT NULL DEFAULT 0,
 
     PRIMARY KEY ("id")
 );
@@ -20,6 +23,7 @@ CREATE TABLE "User" (
     "firstName" VARCHAR(30) NOT NULL,
     "lastName" VARCHAR(30) NOT NULL,
     "password" TEXT NOT NULL,
+    "role" "Role" NOT NULL DEFAULT E'USER',
 
     PRIMARY KEY ("id")
 );

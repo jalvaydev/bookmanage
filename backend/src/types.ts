@@ -10,3 +10,4 @@ export type Context = {
   res: Response;
   prisma: PrismaClient;
 };
+

@@ -2,6 +2,7 @@ import { ApolloServer } from "apollo-server-express";
 import "reflect-metadata";
 import * as tq from "type-graphql";
 import UserResolver from "./resolvers/user";
+import BookResolver from "./resolvers/book"
 import Redis from "ioredis";
 import connectRedis from "connect-redis";
 import express from "express";
@@ -46,7 +47,7 @@ const main = async () => {
   );
 
   const schema = await tq.buildSchema({
-    resolvers: [UserResolver],
+    resolvers: [UserResolver, BookResolver],
     validate: false,
   });
 

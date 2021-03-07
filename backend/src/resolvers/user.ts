@@ -13,6 +13,15 @@ import { validateRegister } from "../utils/validateRegister";
 import argon2 from "argon2";
 import { Context } from "../types";
 
+@ObjectType()
+class FieldError {
+  @Field()
+  field: string;
+
+  @Field()
+  message: string;
+}
+
 @InputType()
 export class RegisterInput {
   @Field()
@@ -28,14 +37,7 @@ export class RegisterInput {
   password: string;
 }
 
-@ObjectType()
-class FieldError {
-  @Field()
-  field: string;
 
-  @Field()
-  message: string;
-}
 
 @ObjectType()
 class UserResponse {
