@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Transition } from "@headlessui/react";
-import NextLink from "next/link";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState(false);
   const [profileState, setProfileState] = useState(false);
   let user = false; // testing
+
   return (
     <nav className="bg-indigo-600 border-b border-indigo-300 border-opacity-25 lg:border-none">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
@@ -21,35 +22,36 @@ const NavBar = () => {
             <div className="hidden lg:block lg:ml-10">
               <div className="flex space-x-4">
                 {/* <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" --> */}
-                <NextLink href="/">
-                  <a className="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium">
-                    Home
-                  </a>
-                </NextLink>
+                <a
+                  href="/"
+                  className="bg-indigo-700 text-white rounded-md py-2 px-3 text-sm font-medium"
+                >
+                  Home
+                </a>
 
                 <a
-                  href="#"
+                  href="/"
                   className="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
                 >
                   Book of the Day
                 </a>
 
                 <a
-                  href="#"
+                  href="/"
                   className="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
                 >
                   Categories
                 </a>
 
                 <a
-                  href="#"
+                  href="/"
                   className="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
                 >
                   Sale
                 </a>
 
                 <a
-                  href="#"
+                  href="/"
                   className="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md py-2 px-3 text-sm font-medium"
                 >
                   About Us
@@ -201,7 +203,7 @@ const NavBar = () => {
                       aria-labelledby="user-menu"
                     >
                       <a
-                        href="#"
+                        href="/"
                         className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >
@@ -209,7 +211,7 @@ const NavBar = () => {
                       </a>
 
                       <a
-                        href="#"
+                        href="/"
                         className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >
@@ -217,7 +219,7 @@ const NavBar = () => {
                       </a>
 
                       <a
-                        href="#"
+                        href="/"
                         className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >
@@ -231,24 +233,20 @@ const NavBar = () => {
                       aria-orientation="vertical"
                       aria-labelledby="user-menu"
                     >
-                      <NextLink href="/login">
-                        <a
-                          href="#"
-                          className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                        >
-                          Login
-                        </a>
-                      </NextLink>
-                      <NextLink href="/register">
-                        <a
-                          href="#"
-                          className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
-                          role="menuitem"
-                        >
-                          Register
-                        </a>
-                      </NextLink>
+                      <Link
+                        to="/login"
+                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
+                      >
+                        Login
+                      </Link>
+                      <Link
+                        to="/register"
+                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                        role="menuitem"
+                      >
+                        Register
+                      </Link>
                     </div>
                   )}
                 </Transition>
@@ -265,35 +263,36 @@ const NavBar = () => {
       >
         <div className="px-2 pt-2 pb-3 space-y-1">
           {/* <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" --> */}
-          <NextLink href="/">
-            <a className="bg-indigo-700 text-white block rounded-md py-2 px-3 text-base font-medium">
-              Home
-            </a>
-          </NextLink>
+          <a
+            href="/"
+            className="bg-indigo-700 text-white block rounded-md py-2 px-3 text-base font-medium"
+          >
+            Home
+          </a>
 
           <a
-            href="#"
+            href="/"
             className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
           >
             Team
           </a>
 
           <a
-            href="#"
+            href="/"
             className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
           >
             Projects
           </a>
 
           <a
-            href="#"
+            href="/"
             className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
           >
             Calendar
           </a>
 
           <a
-            href="#"
+            href="/"
             className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
           >
             Reports
@@ -338,21 +337,21 @@ const NavBar = () => {
             </div>
             <div className="mt-3 px-2 space-y-1">
               <a
-                href="#"
+                href="/"
                 className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
               >
                 Your Profile
               </a>
 
               <a
-                href="#"
+                href="/"
                 className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
               >
                 Settings
               </a>
 
               <a
-                href="#"
+                href="/"
                 className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
               >
                 Sign out
@@ -363,19 +362,18 @@ const NavBar = () => {
           <div className="pt-4 pb-3 border-t border-indigo-700">
             <div className="flex items-center">
               <div className="px-2 pt-2 pb-3 space-y-1">
-                <NextLink href="/login">
-                  <a className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium">
-                    Login
-                  </a>
-                </NextLink>
-                <NextLink href="/register">
-                  <a
-                    href="#"
-                    className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
-                  >
-                    Register
-                  </a>
-                </NextLink>
+                <Link
+                  to="/login"
+                  className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
+                >
+                  Login
+                </Link>
+                <a
+                  href="/register"
+                  className="text-white hover:bg-indigo-500 hover:bg-opacity-75 block rounded-md py-2 px-3 text-base font-medium"
+                >
+                  Register
+                </a>
               </div>
             </div>
           </div>

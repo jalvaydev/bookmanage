@@ -11,25 +11,25 @@ const Footer = () => {
 
           {/* <!-- Links --> */}
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Installation
           </a>
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Release Notes
           </a>
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Release Notes
           </a>
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Release Notes
@@ -45,13 +45,13 @@ const Footer = () => {
 
           {/* <!-- Links --> */}
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Installation
           </a>
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Release Notes
@@ -67,13 +67,13 @@ const Footer = () => {
 
           {/* <!-- Links --> */}
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Installation
           </a>
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Release Notes
@@ -89,13 +89,13 @@ const Footer = () => {
 
           {/* <!-- Links --> */}
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Installation
           </a>
           <a
-            href="#"
+            href="/"
             className="my-3 block text-gray-300 hover:text-gray-100 text-sm font-medium duration-700"
           >
             Release Notes
@@ -116,19 +116,19 @@ const Footer = () => {
 
           {/* <!-- Required Unicons (if you want) --> */}
           <div className="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
-            <a href="#" className="w-6 mx-1">
+            <a href="/" className="w-6 mx-1">
               <i className="uil uil-facebook-f"></i>
             </a>
-            <a href="#" className="w-6 mx-1">
+            <a href="/" className="w-6 mx-1">
               <i className="uil uil-twitter-alt"></i>
             </a>
-            <a href="#" className="w-6 mx-1">
+            <a href="/" className="w-6 mx-1">
               <i className="uil uil-youtube"></i>
             </a>
-            <a href="#" className="w-6 mx-1">
+            <a href="/" className="w-6 mx-1">
               <i className="uil uil-linkedin"></i>
             </a>
-            <a href="#" className="w-6 mx-1">
+            <a href="/" className="w-6 mx-1">
               <i className="uil uil-instagram"></i>
             </a>
           </div>
