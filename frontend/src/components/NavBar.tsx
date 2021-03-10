@@ -1,11 +1,37 @@
 import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Link } from "react-router-dom";
+import {
+  LogoutDocument,
+  useLogoutMutation,
+  useMeQuery,
+} from "../generated/graphql";
+
+// TODO: ADD LOGOUT BUTTON
 
 const NavBar = () => {
   const [menuState, setMenuState] = useState(false);
   const [profileState, setProfileState] = useState(false);
-  let user = false; // testing
+  const { data, loading, error } = useMeQuery();
+  const [logout] = useLogoutMutation({
+    update: (cache) => {
+      cache.modify({
+        fields: {
+          me() {
+            const newMe = cache.writeQuery({
+              query: LogoutDocument,
+              data: logout,
+            });
+            return newMe;
+          },
+        },
+      });
+    },
+  });
+  let user = data?.me;
+
+  if (loading) return <div>loading...</div>;
+  if (error) return <div>error...</div>;
 
   return (
     <nav className="bg-indigo-600 border-b border-indigo-300 border-opacity-25 lg:border-none">
@@ -218,13 +244,13 @@ const NavBar = () => {
                         Settings
                       </a>
 
-                      <a
-                        href="/"
-                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                      <button
+                        onClick={() => logout()}
+                        className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                         role="menuitem"
                       >
                         Sign out
-                      </a>
+                      </button>
                     </div>
                   ) : (
                     <div
@@ -350,12 +376,12 @@ const NavBar = () => {
                 Settings
               </a>
 
-              <a
-                href="/"
+              <button
+                onClick={() => logout()}
                 className="block rounded-md py-2 px-3 text-base font-medium text-white hover:bg-indigo-500 hover:bg-opacity-75"
               >
                 Sign out
-              </a>
+              </button>
             </div>
           </div>
         ) : (

@@ -11,11 +11,6 @@ const Layout = ({ children, title }: AppProps) => {
     <div className="min-h-screen flex flex-col bg-gray-100">
       <div className="bg-indigo-600 pb-32 h-full">
         <NavBar />
-        <header className="py-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-white">{title}</h1>
-          </div>
-        </header>
       </div>
 
       <main className="-mt-32 mb-auto">
@@ -26,7 +21,7 @@ const Layout = ({ children, title }: AppProps) => {
         </div>
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };

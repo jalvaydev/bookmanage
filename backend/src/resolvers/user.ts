@@ -12,6 +12,7 @@ import {
 import { validateRegister } from "../utils/validateRegister";
 import argon2 from "argon2";
 import { Context } from "../types";
+import { COOKIE_NAME } from "../constants";
 
 @ObjectType()
 class FieldError {
@@ -37,8 +38,6 @@ export class RegisterInput {
   password: string;
 }
 
-
-
 @ObjectType()
 class UserResponse {
   @Field(() => [FieldError], { nullable: true })
@@ -50,6 +49,15 @@ class UserResponse {
 
 @Resolver()
 class UserResolver {
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() { prisma, req }: Context): Promise<User | null> {
+    if (!req.session.userId) {
+      return null;
+    }
+
+    return prisma.user.findUnique({ where: { id: req.session.userId } });
+  }
+
   @Query(() => [User])
   async users(@Ctx() { prisma }: Context): Promise<User[] | null> {
     return prisma.user.findMany();
@@ -149,6 +157,20 @@ class UserResolver {
     req.session.userId = user.id;
 
     return { user };
+  }
+
+  @Mutation(() => Boolean)
+  async logout(@Ctx() { req, res }: Context) {
+    return new Promise((resolve) => {
+      req.session.destroy((err) => {
+        res.clearCookie(COOKIE_NAME);
+        if (err) {
+          resolve(false);
+          return;
+        }
+        resolve(true);
+      });
+    });
   }
 }
 
