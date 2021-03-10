@@ -7,8 +7,6 @@ import {
   useMeQuery,
 } from "../generated/graphql";
 
-// TODO: ADD LOGOUT BUTTON
-
 const NavBar = () => {
   const [menuState, setMenuState] = useState(false);
   const [profileState, setProfileState] = useState(false);

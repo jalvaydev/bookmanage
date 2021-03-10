@@ -1,6 +1,8 @@
+import { Maybe } from "../../generated/graphql";
+
 type CardProps = {
   title: string;
-  bookImage?: string;
+  bookImage?: Maybe<string>;
   author: string;
   price: number;
 };
@@ -11,7 +13,9 @@ const Card = ({ title, bookImage, author, price }: CardProps) => {
       <div className="flex-1 flex flex-col p-8">
         <img
           className="w-32 h-32 flex-shrink-0 mx-auto bg-black"
-          src={bookImage ? bookImage : "/no-image.png"}
+          src={`${process.env.PUBLIC_URL}/assets/images/${
+            bookImage ? bookImage : "no-image.jpg"
+          }`}
           alt=""
         />
         <h3 className="mt-6 text-gray-900 text-sm font-medium">{title}</h3>
@@ -21,7 +25,7 @@ const Card = ({ title, bookImage, author, price }: CardProps) => {
           <dt className="sr-only">Price</dt>
           <dd className="mt-3">
             <span className="px-2 py-1 text-green-800 text-xs font-medium bg-green-100 rounded-full">
-              {`$${price.toPrecision(4)}`}
+              {`$${price}`}
             </span>
           </dd>
         </dl>
