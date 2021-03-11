@@ -10,7 +10,7 @@ import {
 const NavBar = () => {
   const [menuState, setMenuState] = useState(false);
   const [profileState, setProfileState] = useState(false);
-  const { data, loading, error } = useMeQuery();
+  const { data, error } = useMeQuery();
   const [logout] = useLogoutMutation({
     update: (cache) => {
       cache.modify({
@@ -28,7 +28,6 @@ const NavBar = () => {
   });
   let user = data?.me;
 
-  if (loading) return <div>loading...</div>;
   if (error) return <div>error...</div>;
 
   return (

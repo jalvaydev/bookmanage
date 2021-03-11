@@ -3,6 +3,7 @@ import { LoginDocument, useLoginMutation } from "./generated/graphql";
 import Alert from "./components/Alerts/Alert";
 import { useHistory } from "react-router-dom";
 import Header from "./components/Header";
+import Layout from "./components/Layout";
 
 interface LoginInput {
   email: string;
@@ -27,7 +28,7 @@ const Login = () => {
     },
   });
   return (
-    <>
+    <Layout>
       <Header text={"Login"} />
       <div className="min-h-full rounded-lg flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
@@ -149,7 +150,7 @@ const Login = () => {
           </Formik>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

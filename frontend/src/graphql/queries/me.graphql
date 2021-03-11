@@ -4,5 +4,6 @@ query Me {
     lastName
     id
     email
+    role
   }
 }

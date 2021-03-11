@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 import { Maybe } from "../../generated/graphql";
 
 type CardProps = {
+  id: number;
   title: string;
   bookImage?: Maybe<string>;
   author: string;
   price: number;
 };
 
-const Card = ({ title, bookImage, author, price }: CardProps) => {
+const Card = ({ title, bookImage, author, price, id }: CardProps) => {
   return (
     <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <div className="flex-1 flex flex-col p-8">
@@ -18,7 +20,9 @@ const Card = ({ title, bookImage, author, price }: CardProps) => {
           }`}
           alt=""
         />
-        <h3 className="mt-6 text-gray-900 text-sm font-medium">{title}</h3>
+        <h3 className="mt-6 text-gray-900 text-sm font-medium">
+          <Link to={`book/${id}`}>{title}</Link>
+        </h3>
         <dl className="mt-1 flex-grow flex flex-col justify-between">
           <dt className="sr-only">Author</dt>
           <dd className="text-gray-500 text-sm">{author}</dd>

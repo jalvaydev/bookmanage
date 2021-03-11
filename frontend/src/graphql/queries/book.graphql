@@ -1,0 +1,10 @@
+query Book($id: Float!) {
+  book(id: $id) {
+    id
+    title
+    author
+    price
+    stock
+    image
+  }
+}
